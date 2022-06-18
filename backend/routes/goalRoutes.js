@@ -5,15 +5,16 @@ import {
   updateGoal,
   deleteGoal,
 } from '../controllers/goalController.js'
+import { protect } from '../middlewares/authMiddleware.js'
 
 const goalRouter = express.Router()
 
-goalRouter.get('/', getGoals)
+goalRouter.get('/', protect, getGoals)
 
-goalRouter.post('/', setGoal)
+goalRouter.post('/', protect, setGoal)
 
-goalRouter.put('/:id', updateGoal)
+goalRouter.put('/:id', protect, updateGoal)
 
-goalRouter.delete('/:id', deleteGoal)
+goalRouter.delete('/:id', protect, deleteGoal)
 
 export default goalRouter
